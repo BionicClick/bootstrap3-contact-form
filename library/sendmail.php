@@ -1,6 +1,4 @@
 <?php
-  //start a session -- needed for Securimage Captcha check
-  session_start();
 
   //add you e-mail address here
   define("MY_EMAIL", "jmb@jonbake.com");
@@ -46,13 +44,6 @@
   //do some simple validation. this should have been validated on the client-side also
   if (empty($email)) {
     errorResponse('Email or message is empty.');
-  }
-
-  //do Captcha check, make sure the submitter is not a robot:)...
-  include_once './vender/securimage/securimage.php';
-  $securimage = new Securimage();
-  if (!$securimage->check($_POST['captcha_code'])) {
-    errorResponse('Invalid Security Code');
   }
 
   //try to send the message
